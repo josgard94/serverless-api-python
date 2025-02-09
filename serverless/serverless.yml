@@ -1,0 +1,21 @@
+service: serverless-demo
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.10
+  region: us-east-1
+  stage: ${self:custom.currentStage}
+
+custom:
+  currentStage: dev
+  projectName: serverless-demo
+
+# Descomentar en local
+# plugins:
+#   - serverless-offline
+
+resources:
+  - ${file(resources/apigateway.yml)}
+  - ${file(resources/api-gateway-errors.yml)}
+  - ${file(resources/iam-roles.yml)}
