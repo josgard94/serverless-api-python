@@ -11,7 +11,7 @@ custom:
   currentStage: dev
   projectName: serverless-demo
 
-# Descomentar en local
+
 # plugins:
 #   - serverless-offline
 
