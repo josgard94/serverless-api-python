@@ -10,9 +10,10 @@
     "author": "Edgard Diaz (josgard)",
     "license": "Apache-2.0",
     "devDependencies": {
-        "serverless-offline": "^14.4.0",
         "http-proxy": "^1.18.1",
         "js-yaml": "^4.1.0",
-        "nodemon": "^3.1.9"
+        "nodemon": "^3.1.9",
+        "serverless-offline": "^14.4.0",
+        "serverless-prune-plugin": "^2.1.0"
     }
 }

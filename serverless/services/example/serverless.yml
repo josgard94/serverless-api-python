@@ -1,0 +1,38 @@
+service: example
+
+provider:
+  name: aws
+  region: us-east-1
+  stage: ${self:custom.currentStage}
+  runtime: python3.10
+  role:
+    "Fn::ImportValue": LambdaRole-default-${self:custom.currentStage}
+  apiGateway:
+    restApiId:
+      "Fn::ImportValue": ${self:custom.currentStage}-ExtApiGatewayRestApiId
+    restApiRootResourceId:
+      "Fn::ImportValue": ${self:custom.currentStage}-ExtApiGatewayRestApiRootResourceId
+  environment:
+    env: ${self:custom.currentStage}
+
+
+custom:
+  currentStage: ${file(../../serverless.yml):custom.currentStage}
+  prune:
+    automatic: true
+    number: 3
+
+plugins:
+  - serverless-offline
+  - serverless-prune-plugin
+
+functions:  
+  example:
+    name: example-${self:custom.currentStage}
+    handler: functions/example.hello_word
+    timeout: 6
+    maxMemorySize: 128
+    events:
+      - http:
+        path: /api/example
+        method: get

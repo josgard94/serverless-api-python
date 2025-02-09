@@ -12,8 +12,8 @@ custom:
   projectName: serverless-demo
 
 
-# plugins:
-#   - serverless-offline
+plugins:
+  - serverless-offline
 
 resources:
   - ${file(resources/apigateway.yml)}
