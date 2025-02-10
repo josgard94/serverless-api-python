@@ -1,5 +1,16 @@
 import json
-from functions.example.hello_world import hello_world
+from example.hello_world import say_hello
 
-def hello_world(event, context):
-    return hello_world(event, context)
+def hello(event, context):
+    try:
+        return say_hello(event, context)
+    except Exception as e:
+        return {
+            "statusCode": 500,
+            "headers": {
+                'Access-Control-Allow-Origin': 'Content-Type',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET',
+            },
+            'body': json.dumps({"message": str(e)})
+        }

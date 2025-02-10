@@ -1,5 +1,5 @@
-service: serverless-demo
-frameworkVersion: '3'
+service: serverless-api
+frameworkVersion: '4'
 
 provider:
   name: aws
@@ -9,11 +9,15 @@ provider:
 
 custom:
   currentStage: dev
-  projectName: serverless-demo
+  projectName: serverless-api
+  #only for local development
+  # serverless-offline:
+  #   httpPort: 5000
+  #   lambdaPort: 5001
 
-
-plugins:
-  - serverless-offline
+#only for local development
+# plugins:
+#   - serverless-offline
 
 resources:
   - ${file(resources/apigateway.yml)}

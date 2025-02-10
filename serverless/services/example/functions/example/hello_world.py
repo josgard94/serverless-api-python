@@ -1,6 +1,6 @@
 import json
 
-def hello_world(event, context):
+def say_hello(event, context):
     return {
         "statusCode": 200,
         "headers": {
