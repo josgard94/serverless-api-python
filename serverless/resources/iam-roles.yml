@@ -1,0 +1,34 @@
+Resources:
+  IAMDefaultRoleLambdas:
+    Type: AWS::IAM::Role
+    Properties:
+      Path: /
+      RoleName: LambdaRole-default-${self:custom.currentStage}
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: LambdaRolePolicy-default-${self:custom.currentStage}
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:*
+                  - logs:*
+
+                Resource: "*"
+
+Outputs:
+  DefaultLambdaRole:
+    Value:
+      Fn::GetAtt:
+        - IAMDefaultRoleLambdas
+        - Arn
+    Export:
+      Name: LambdaRole-default-${self:custom.currentStage}
