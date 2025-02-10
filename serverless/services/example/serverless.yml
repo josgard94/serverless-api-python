@@ -30,7 +30,7 @@ plugins:
 functions:  
   example:
     name: example-${self:custom.currentStage}
-    handler: functions.example.hello_world.say_hello
+    handler: functions/handler.hello
     timeout: 6
     memorySize: 128
     events:
