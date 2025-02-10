@@ -8,7 +8,7 @@ if platform.system() == 'Linux' or platform.system() == 'Darwin':
     isNt = False
 
 try:
-    code = call(['npm', 'install', '-g', '--unsafe-perm', 'serverless@3.0.0'], shell=False)
+    code = call(['npm', 'install', '-g', '--unsafe-perm', 'serverless'], shell=False)
     if code > 0:
         raise Exception('Severless installation error')
 

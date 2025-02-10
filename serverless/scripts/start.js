@@ -67,7 +67,7 @@ services.forEach(service => {
 
     const child = spawn(
       "nodemon -e py,yml --exec serverless",
-      ["offline", "start", "--noPrependStageInUrl", "--httpPort", service.port, "--lambdaPort", service.lambdaPort],
+      ["offline", "start"],
       { cwd: service.path, shell: true }
     );
 
@@ -109,6 +109,6 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(API_PORT, () => {
-  console.log(`API Listening on port ${API_PORT}`);
+  console.log(`API Listening on port ${API_PORT} ---|>`);
 });
 
