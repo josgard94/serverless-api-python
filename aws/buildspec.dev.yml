@@ -1,0 +1,21 @@
+version: 2.0
+
+env:
+  variables:
+    SERVERLESS_ACCESS_KEY: "YOUR KEY HERE" #KEY required for Serverless Framework v4
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+      nodejs: 20
+    commands:
+      - echo installing serverless framework
+      - npm install -g serverless
+      - cd serverless && npm run configure
+      - serverless plugin  install -n serverless-prune-plugin
+
+  pre_build:
+    commands:
+      - sed -i -e "s|currentStage\:.*|currentStage\:\ dev|g" serverless/serverless.yml
+      - cd serverless && npm run deploy
